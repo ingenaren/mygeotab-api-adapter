@@ -19,7 +19,6 @@ WORKDIR /app
 # Force PostgreSQL configuration
 ENV DatabaseProviderType=PostgreSQL
 ENV DatabaseSettings__DatabaseProviderType=PostgreSQL
-ENV AppSettings__DatabaseSettings__DatabaseProviderType=PostgreSQL
 
 # Force feed configuration
 ENV EnableDeviceFeed=True
