@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[build.nixpacksPlan]
+providers = ["csharp"]
+
+[build.nixpacksPlan.phases.setup]
+nixPkgs = ["dotnet-sdk_8"]
+
+[deploy]
+startCommand = "dotnet MyGeotabAPIAdapter.dll"
