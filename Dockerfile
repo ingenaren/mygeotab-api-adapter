@@ -1,9 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-# Set database provider type as environment variable
-ENV DatabaseProviderType=PostgreSQL
-
 # Copy solution and project files
 COPY *.sln .
 COPY */*.csproj ./
@@ -19,8 +16,16 @@ RUN dotnet publish MyGeotabAPIAdapter/MyGeotabAPIAdapter.csproj -c Release -o ou
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
-# Set database provider type in runtime too
+# Force PostgreSQL configuration
 ENV DatabaseProviderType=PostgreSQL
+ENV DatabaseSettings__DatabaseProviderType=PostgreSQL
+ENV AppSettings__DatabaseSettings__DatabaseProviderType=PostgreSQL
+
+# Force feed configuration
+ENV EnableDeviceFeed=True
+ENV EnableLogRecordFeed=True
+ENV EnableStatusDataFeed=True
+ENV EnableFaultDataFeed=True
 
 COPY --from=build /app/out .
 
