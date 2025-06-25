@@ -1,9 +1,6 @@
 [build]
 builder = "nixpacks"
 
-[build.nixpacksPlan]
-providers = ["dotnet"]  # ← Cambiar de "csharp" a "dotnet"
-
 [build.nixpacksPlan.phases.setup]
 nixPkgs = ["dotnet-sdk_8"]
 
